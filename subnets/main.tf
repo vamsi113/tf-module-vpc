@@ -6,6 +6,8 @@ module "lm-subnets" {
   env           = var.env
   name          = each.value.name
   subnet_availability_zones = var.subnet_availability_zones
+  route_table_id = lookup(aws_route_table.route_table, each.value.name, null )
+  //[ for k,v in aws_route_table.route_table: v.id ]
 }
 
 resource "aws_route_table" "route_table" {
