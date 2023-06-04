@@ -25,9 +25,9 @@ resource "aws_route_table" "route_table" {
 #  value = module.lm-subnets
 #}
 
-#output "route_tables" {
-#  value = aws_route_table.route_table
-#}
+output "route_tables" {
+  value = aws_route_table.route_table
+}
 
 resource "aws_route" "peering_connection_route" {
   for_each      = var.subnets
@@ -43,6 +43,6 @@ resource "aws_route" "peering_connection_route" {
 #  vpc_peering_connection_id = var.peering_connection_id
 #}
 
-output "subnets" {
-  value = local.subnet_lists[*].id
-}
+#output "subnets" {
+#  value = local.subnet_lists[*].id
+#}
