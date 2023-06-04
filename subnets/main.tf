@@ -21,28 +21,32 @@ resource "aws_route_table" "route_table" {
   }
 }
 
-#output "subnets" {
-#  value = module.lm-subnets
-#}
 
-output "route_tables" {
-  value = aws_route_table.route_table
-}
 
 resource "aws_route" "peering_connection_route" {
-  for_each      = var.subnets
+  for_each                  = var.subnets
   route_table_id            = lookup(lookup(aws_route_table.route_table, each.value.name, null), "id", null)
   destination_cidr_block    = lookup(var.management_vpc, "default_vpc_cidr", null )
   vpc_peering_connection_id = var.peering_connection_id
 }
 
-#resource "aws_route" "internet_gateway_connection_route" {
-#  for_each      = var.subnets
-#  route_table_id            = lookup(lookup(aws_route_table.route_table, each.value.name, null), "id", null)
-#  destination_cidr_block    = lookup(var.management_vpc, "default_vpc_cidr", null )
-#  vpc_peering_connection_id = var.peering_connection_id
-#}
 
 #output "subnets" {
 #  value = local.subnet_lists[*].id
 #}
+
+#output "subnets" {
+#  value = module.lm-subnets
+#}
+
+#output "route_tables" {
+#  value = aws_route_table.route_table
+#}
+
+output "route_tables" {
+  value = [for k,v in aws_route_table.route_table: v.id] ## here ouput will be in list
+  ##{
+     ##for k,v in aws_route_table.route_table: k=> v.id ## here output will be map
+   ## }
+}
+
