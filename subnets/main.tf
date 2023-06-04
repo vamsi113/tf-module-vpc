@@ -43,6 +43,6 @@ resource "aws_route" "peering_connection_route" {
 #  vpc_peering_connection_id = var.peering_connection_id
 #}
 
-output "lm-subnets" {
+output "subnets" {
   value = [ for i,j in module.lm-subnets: j.subnets ]
 }
