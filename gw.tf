@@ -22,8 +22,8 @@ resource "aws_internet_gateway" "gw" {
 #}
 
 locals {
-  private_route_tables = [for i,j in module.private_subnets : j.route_tables]
-  public_route_tables  = [for i,j in module.public_subnets : j.route_tables]
+  private_route_tables = flatten([for i,j in module.private_subnets : j.route_tables])
+  public_route_tables  = flatten([for i,j in module.public_subnets : j.route_tables])
 }
 
 
