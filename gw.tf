@@ -21,9 +21,9 @@ resource "aws_internet_gateway" "gw" {
 #
 #}
 
-resource "aws_route" "internet_gateway_route_to_public_subnets" {
-  count = length()
-  route_table_id            = element(, )
-  destination_cidr_block    =
-  vpc_peering_connection_id = var.peering_connection_id
-}
+#resource "aws_route" "internet_gateway_route_to_public_subnets" {
+#  count = length()
+#  route_table_id            = element(, )
+#  destination_cidr_block    =
+#  vpc_peering_connection_id = var.peering_connection_id
+#}
