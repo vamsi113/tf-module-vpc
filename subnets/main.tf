@@ -42,3 +42,7 @@ resource "aws_route" "peering_connection_route" {
 #  destination_cidr_block    = lookup(var.management_vpc, "default_vpc_cidr", null )
 #  vpc_peering_connection_id = var.peering_connection_id
 #}
+
+output "subnets" {
+  value = module.lm-subnets
+}
