@@ -36,3 +36,9 @@ resource "aws_route" "peering_connection_route" {
   vpc_peering_connection_id = var.peering_connection_id
 }
 
+#resource "aws_route" "internet_gateway_connection_route" {
+#  for_each      = var.subnets
+#  route_table_id            = lookup(lookup(aws_route_table.route_table, each.value.name, null), "id", null)
+#  destination_cidr_block    = lookup(var.management_vpc, "default_vpc_cidr", null )
+#  vpc_peering_connection_id = var.peering_connection_id
+#}
