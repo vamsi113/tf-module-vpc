@@ -6,5 +6,6 @@ module "subnets" {
   env       = var.env
   subnet_availability_zones = each.value.subnet_availability_zones
   peering_connection_id     = aws_vpc_peering_connection.management_vpc_to_env_vpc.id
+  management_vpc            = var.management_vpc
 
 }
