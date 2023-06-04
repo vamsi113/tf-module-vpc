@@ -21,9 +21,15 @@ resource "aws_internet_gateway" "gw" {
 #
 #}
 
-#resource "aws_route" "internet_gateway_route_to_public_subnets" {
-#  count = length()
-#  route_table_id            = element(, )
-#  destination_cidr_block    =
-#  vpc_peering_connection_id = var.peering_connection_id
-#}
+locals {
+  private_route_tables = [for i,j in module.private_subnets : j.route_tables]
+  public_route_tables  = [for i,j in module.public_subnets : j.route_tables]
+}
+
+
+resource "aws_route" "internet_gateway_route_to_public_subnets" {
+  count                     = length(local.public_route_tables)
+  route_table_id            = element(local.public_route_tables,count.index)
+  destination_cidr_block    = "0.0.0.0/0"
+  gateway_id                = aws_internet_gateway.gw.id
+}
