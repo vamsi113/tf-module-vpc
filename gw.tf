@@ -7,16 +7,16 @@ resource "aws_internet_gateway" "gw" {
   }
 }
 
-resource "aws_eip" "ngw" {
-  vpc = true
-}
-
-resource "aws_nat_gateway" "example" {
-  allocation_id = aws_eip.ngw.id
-  #subnet_id     = aws_subnet.example.id
-
-  tags = {
-    Name = "${var.env}-nat"
-  }
-
-}
+#resource "aws_eip" "ngw" {
+#  domain = "vpc"
+#}
+#
+#resource "aws_nat_gateway" "example" {
+#  allocation_id = aws_eip.ngw.id
+#  #subnet_id     = aws_subnet.example.id
+#
+#  tags = {
+#    Name = "${var.env}-nat"
+#  }
+#
+#}
