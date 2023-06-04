@@ -30,8 +30,8 @@ resource "aws_route_table" "route_table" {
 #}
 
 resource "aws_route" "peering_connection_route" {
-  count                     = length(aws_route_table.route_table)
-  route_table_id            = element(aws_route_table.route_table.*.id, count.index )
+  for_each      = var.subnets
+  route_table_id            = lookup(lookup(aws_route_table.route_table, each.value.name, null), "id", null)
   destination_cidr_block    = lookup(var.management_vpc, "default_vpc_cidr", null )
   vpc_peering_connection_id = var.peering_connection_id
 }
