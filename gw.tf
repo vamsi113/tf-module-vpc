@@ -26,6 +26,9 @@ locals {
   public_route_tables  = flatten([for i,j in module.public_subnets : j.route_tables])
 }
 
+output "test" {
+  value = local.public_route_tables
+}
 
 #resource "aws_route" "internet_gateway_route_to_public_subnet" {
 #  count                     = length(local.public_route_tables)
