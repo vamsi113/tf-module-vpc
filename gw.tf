@@ -26,13 +26,13 @@ locals {
   public_route_tables  = flatten([for i,j in module.public_subnets : j.route_tables])
 }
 
-output "test" {
-  value = local.public_route_tables
-}
-
-#resource "aws_route" "internet_gateway_route_to_public_subnet" {
-#  count                     = length(local.public_route_tables)
-#  route_table_id            = element(local.public_route_tables, count.index)
-#  destination_cidr_block    = "0.0.0.0/0"
-#  gateway_id                = aws_internet_gateway.gw[0].id
+#output "test" {
+#  value = local.public_route_tables
 #}
+
+resource "aws_route" "internet_gateway_route_to_public_subnet" {
+  count                     = length(local.public_route_tables)
+  route_table_id            = element(local.public_route_tables, count.index)
+  destination_cidr_block    = "0.0.0.0/0"
+  gateway_id                = aws_internet_gateway.gw[0].id
+}
