@@ -7,23 +7,24 @@ resource "aws_internet_gateway" "gw" {
   }
 }
 
-#resource "aws_eip" "ip" {
-#  domain = "vpc"
-#}
-#
-#resource "aws_nat_gateway" "ngw" {
-#  allocation_id = aws_eip.ip.id
-#  #subnet_id     = aws_subnet.example.id
-#
-#  tags = {
-#    Name = "${var.env}-nat"
-#  }
-#
-#}
+resource "aws_eip" "ip" {
+  domain = "vpc"
+}
+
+resource "aws_nat_gateway" "ngw" {
+  allocation_id = aws_eip.ip.id
+  subnet_id     = local.private_subnets_list[0]
+  tags = {
+    Name = "${var.env}-nat"
+  }
+
+}
 
 locals {
-  private_route_tables = flatten([for i,j in module.private_subnets : j.route_tables])
-  public_route_tables  = flatten([for i,j in module.public_subnets : j.route_tables])
+  private_route_tables = flatten([for i, j in module.private_subnets : j.route_tables])
+  private_subnets_list = flatten([for i, j in module.private_subnets : j.subnets_list])
+  public_subnets_list  = flatten([for i, j in module.public_subnets : j.subnets_list])
+  public_route_tables  = flatten([for i, j in module.public_subnets : j.route_tables])
 }
 
 #output "test" {
