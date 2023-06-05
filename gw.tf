@@ -13,7 +13,7 @@ resource "aws_eip" "ip" {
 
 resource "aws_nat_gateway" "ngw" {
   allocation_id = aws_eip.ip.id
-  subnet_id     = local.private_subnets_list[0]
+  subnet_id     = local.public_subnets_list[0]
   tags = {
     Name = "${var.env}-nat"
   }
