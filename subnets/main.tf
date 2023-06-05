@@ -46,10 +46,10 @@ output "subnets_list" {
 ##  value = aws_route_table.route_table
 ##}
 #
-#output "route_tables" {
-#  value = [for k,v in aws_route_table.route_table: v.id] ## here output will be in list
-#  ##{
-#     ##for k,v in aws_route_table.route_table: k=> v.id ## here output will be map
-#   ## }
-#}
-#
+output "route_tables" {
+  value = [for k,v in aws_route_table.route_table: v.id] ## here output will be in list
+  ##{
+     ##for k,v in aws_route_table.route_table: k=> v.id ## here output will be map
+   ## }
+}
+
