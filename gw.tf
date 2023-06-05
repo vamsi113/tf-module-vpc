@@ -7,18 +7,18 @@ resource "aws_internet_gateway" "gw" {
   }
 }
 
-resource "aws_eip" "ip" {
-  domain = "vpc"
-}
-
-resource "aws_nat_gateway" "ngw" {
-  allocation_id = aws_eip.ip.id
-  subnet_id     = local.public_subnets_list[0]
-  tags = {
-    Name = "${var.env}-nat"
-  }
-
-}
+#resource "aws_eip" "ip" {
+#  domain = "vpc"
+#}
+#
+#resource "aws_nat_gateway" "ngw" {
+#  allocation_id = aws_eip.ip.id
+#  subnet_id     = local.public_subnets_list[0]
+#  tags = {
+#    Name = "${var.env}-nat"
+#  }
+#
+#}
 
 locals {
   private_route_tables = flatten([for i, j in module.private_subnets : j.route_tables])
@@ -31,9 +31,9 @@ locals {
 #  value = local.public_route_tables
 #}
 
-resource "aws_route" "internet_gateway_route_to_public_subnet" {
-  count                     = length(local.public_route_tables)
-  route_table_id            = element(local.public_route_tables, count.index)
-  destination_cidr_block    = "0.0.0.0/0"
-  gateway_id                = aws_internet_gateway.gw[0].id
-}
+#resource "aws_route" "internet_gateway_route_to_public_subnet" {
+#  count                     = length(local.public_route_tables)
+#  route_table_id            = element(local.public_route_tables, count.index)
+#  destination_cidr_block    = "0.0.0.0/0"
+#  gateway_id                = aws_internet_gateway.gw[0].id
+#}
