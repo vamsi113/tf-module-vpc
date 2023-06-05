@@ -34,10 +34,10 @@ locals {
   subnet_lists = flatten([ for i,j in module.lm-subnets: j.subnets ])
 }
 
-#output "subnets_list" {
-#  value = local.subnet_lists[*].id
-#}
-#
+output "subnets_list" {
+  value = local.subnet_lists[*].id
+}
+
 ##output "subnets" {
 ##  value = module.lm-subnets
 ##}

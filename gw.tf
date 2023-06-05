@@ -12,7 +12,7 @@ resource "aws_eip" "ip" {
 }
 
 resource "aws_nat_gateway" "ngw" {
-  count   = length(local.vpc_ids)
+  count         = length(local.vpc_ids)
   allocation_id = aws_eip.ip.id
   subnet_id     = local.public_subnets_list[0]
   tags = {
