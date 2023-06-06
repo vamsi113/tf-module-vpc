@@ -29,7 +29,7 @@
 module "public_subnets" {
   for_each  = var.public_subnets
   source    = "./subnets"
-  subnets   = each.value.cidr_block
+  cidr_block   = each.value.cidr_block
   vpc_id    = aws_vpc.main.id
   env       = var.env
   name = each.value.name
