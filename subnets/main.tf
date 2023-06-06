@@ -59,3 +59,12 @@ resource "aws_subnet" "main" {
   tags       = local.subnet_tags
   availability_zone = element(var.subnet_availability_zones, count.index)
 }
+
+resource "aws_route_table" "route_table" {
+  vpc_id = var.vpc_id
+  tags   = {
+    Name    = "${var.env}-${var.name}-rt"
+    ENV     = var.env
+    PROJECT = "roboshop"
+  }
+}
