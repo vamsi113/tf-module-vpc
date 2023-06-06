@@ -45,3 +45,26 @@
 #  destination_cidr_block    = "0.0.0.0/0"
 #  gateway_id                = aws_nat_gateway.ngw[0].id
 #}
+
+###updated modules
+
+resource "aws_internet_gateway" "igw" {
+  vpc_id  = aws_vpc.main.id
+
+  tags = {
+    Name = "${var.env}-igw"
+  }
+}
+
+resource "aws_eip" "ip" {
+  domain = "vpc"
+}
+
+resource "aws_nat_gateway" "ngw" {
+  allocation_id = aws_eip.ip.id
+  subnet_id     =
+  tags = {
+    Name = "${var.env}-nat"
+  }
+
+}

@@ -18,3 +18,8 @@
 #  value = [for k,v in module.private_subnets: k]
 #}
 
+###updated modules
+
+output "private_subnets" {
+  value = module.private_subnets
+}
