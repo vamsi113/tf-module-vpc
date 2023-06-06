@@ -20,9 +20,9 @@ resource "aws_vpc" "main" {
 #    tags       = local.vpc_tags
 #}
 #
-output "vpc" {
-    value = aws_vpc.main
-}
+#output "vpc" {
+#    value = aws_vpc.main[each.]
+#}
 
 
 #module "additional_cidr_block" {
@@ -32,6 +32,6 @@ output "vpc" {
 #    vpc_id                  = [ for k,v in aws_vpc.main: v.id]
 #}
 
-#output "vpc" {
-#    value = [ for k,v in aws_vpc.main: v.id ]
-#}
+output "vpc" {
+    value = [ for k,v in aws_vpc.main: v.id ]
+}
