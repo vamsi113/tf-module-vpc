@@ -25,6 +25,6 @@ locals {
     PROJECT= "roboshop"
 
   }
-  all-route_tables = [ for i,j in module.private_subnets: j.route_tables.id]
+  all-route_tables = concat([ for i,j in module.private_subnets: j.route_tables.id],[ for i,j in module.public_subnets: j.route_tables.id]
 
 }
