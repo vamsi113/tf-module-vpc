@@ -47,9 +47,9 @@ module "private_subnets" {
   env       = var.env
   name = each.value.name
   subnet_availability_zones = var.subnet_availability_zones
-  peering_connection_id     = aws_vpc_peering_connection.management_vpc_to_env_vpc.*.id[0]
-  management_vpc            = var.management_vpc
-  internet_connection_id     = aws_internet_gateway.gw.*.id[0]
+#  peering_connection_id     = aws_vpc_peering_connection.management_vpc_to_env_vpc.*.id[0]
+#  management_vpc            = var.management_vpc
+#  internet_connection_id     = aws_internet_gateway.gw.*.id[0]
 
 }
 
