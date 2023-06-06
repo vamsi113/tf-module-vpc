@@ -1,8 +1,8 @@
-resource "aws_vpc" "main" {
-    for_each   = var.vpc
-    cidr_block = each.value.cidr_block
-    tags       = local.vpc_tags
-}
+#resource "aws_vpc" "main" {
+#    for_each   = var.vpc
+#    cidr_block = each.value.cidr_block
+#    tags       = local.vpc_tags
+#}
 
 #module "additional_cidr_block" {
 #    for_each                = var.vpc
@@ -15,13 +15,13 @@ resource "aws_vpc" "main" {
 #    value = [ for k,v in aws_vpc.main: v.id ]
 #}
 
-#resource "aws_vpc" "main" {
-#    cidr_block = var.cidr_block
-#    tags       = local.vpc_tags
-#}
+resource "aws_vpc" "main" {
+    cidr_block = var.cidr_block
+    tags       = local.vpc_tags
+}
 #
 #output "vpc" {
-#    value = aws_vpc.main[each.]
+#    value = aws_vpc.main.id
 #}
 
 
@@ -31,7 +31,7 @@ resource "aws_vpc" "main" {
 #    source                  = "./additional_vpc_cidr"
 #    vpc_id                  = [ for k,v in aws_vpc.main: v.id]
 #}
-
-output "vpc" {
-    value = [ for k,v in aws_vpc.main: v.id ]
-}
+#
+#output "vpc" {
+#    value = [ for k,v in aws_vpc.main: v.id ]
+#}
