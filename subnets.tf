@@ -35,7 +35,7 @@ module "public_subnets" {
   name = each.value.name
   subnet_availability_zones = var.subnet_availability_zones
   peering_connection_id     = aws_vpc_peering_connection.management_vpc_to_env_vpc.id
-#  management_vpc            = var.management_vpc
+  management_vpc            = var.management_vpc
   gateway_id     = aws_internet_gateway.igw.id
 
 }
@@ -49,7 +49,7 @@ module "private_subnets" {
   name = each.value.name
   subnet_availability_zones = var.subnet_availability_zones
   peering_connection_id     = aws_vpc_peering_connection.management_vpc_to_env_vpc.id
-#  management_vpc            = var.management_vpc
+  management_vpc            = var.management_vpc
   gateway_id     = aws_nat_gateway.ngw.id
 
 }
