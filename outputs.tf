@@ -24,6 +24,10 @@ output "private_subnets" {
   value = module.private_subnets
 }
 
+output "all-route_tables" {
+  value = local.all-route_tables
+}
+
 output "test" {
   value = lookup(lookup(module.public_subnets, "public", null), "subnets", null)[0].id
 }

@@ -25,5 +25,6 @@ locals {
     PROJECT= "roboshop"
 
   }
+  all-route_tables = [ for i,j in module.private_subnets: j.route_tables.id]
 
 }
