@@ -20,9 +20,9 @@ resource "aws_vpc" "main" {
     tags       = local.vpc_tags
 }
 #
-#output "vpc" {
-#    value = aws_vpc.main.id
-#}
+output "vpc" {
+    value = aws_vpc.main.id
+}
 
 
 #module "additional_cidr_block" {
